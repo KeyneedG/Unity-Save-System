@@ -5,8 +5,6 @@ using UnityEngine;
 public class SaveConfiguration : ScriptableObject
 {
     public float[] floatData;
-    public float[] inventoryData;
-    public float[] amountData;
 
     public void AddData(int id, float data)
     {
