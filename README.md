@@ -1,2 +1,2 @@
 # Unity-Save-System
-Save system fo Unity. Works due the text file.
+Save system for Unity. Works due the text file.
