@@ -7,7 +7,6 @@ using UnityEngine;
 public class SaveSystem : MonoBehaviour
 {
     public SaveConfiguration saveConfiguration;
-    public InventoryManager inventoryManager;
 
     private void Awake()
     {
@@ -21,38 +20,18 @@ public class SaveSystem : MonoBehaviour
 
     public void Load()
     {
-        if (File.Exists(Application.persistentDataPath + "StrangerGameSave.txt"))
+        if (File.Exists(Application.persistentDataPath + "{YourGameName}.txt"))
         {
-            string textFile = File.ReadAllText(Application.persistentDataPath + "StrangerGameSave.txt");
+            string textFile = File.ReadAllText(Application.persistentDataPath + "{YourGameName}.txt");
             string[] textFileArray;
             textFileArray = textFile.Split(' ');
             saveConfiguration.floatData = StringArray(textFileArray);
-        }
-
-        if (File.Exists(Application.persistentDataPath + "StrangerInventorySave.txt"))
-        {
-            string textFileInv = File.ReadAllText(Application.persistentDataPath + "StrangerInventorySave.txt");
-            string[] textFileArrayInv;
-            textFileArrayInv = textFileInv.Split(' ');
-            //if(textFileArrayInv.Length > 0)
-            saveConfiguration.inventoryData = StringArray(textFileArrayInv);
-
-            string textFileA = File.ReadAllText(Application.persistentDataPath + "StrangerAmountSave.txt");
-            string[] textFileArrayA;
-            textFileArrayA = textFileA.Split(' ');
-            //if(textFileArrayInv.Length > 0)
-            saveConfiguration.amountData = StringArray(textFileArrayA);
         }
     }
 
     public void Save()
     {
-        File.WriteAllText(Application.persistentDataPath + "StrangerGameSave.txt", FloatArray(saveConfiguration.floatData));
-        if (inventoryManager.inventory.Count > 0)
-        {
-            File.WriteAllText(Application.persistentDataPath + "StrangerInventorySave.txt", FloatArray(saveConfiguration.inventoryData));
-            File.WriteAllText(Application.persistentDataPath + "StrangerAmountSave.txt", FloatArray(saveConfiguration.amountData));
-        }
+        File.WriteAllText(Application.persistentDataPath + "{YourGameName}.txt", FloatArray(saveConfiguration.floatData));
     }
 
     public string FloatArray(float[] data)
